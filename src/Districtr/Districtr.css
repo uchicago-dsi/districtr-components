@@ -1,0 +1,117 @@
+.districtr {
+  width: 100%;
+  height: 100%;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.districtr .districtr-mapbox {
+  position: absolute;
+  top: 50px;
+  bottom: 0;
+  left: 48px;
+  right: 48px;
+  z-index: 1;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.districtr-menu {
+  z-index: 1000;
+  height: 50px;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 4px 8px;
+  background-color: var(--background);
+  border-bottom: 1px solid #e0e0e0;
+  box-shadow: 2px 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.districtr-menu-main {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.districtr-menu-items {
+  margin: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  list-style-type: none;
+}
+
+.districtr-menu-items > li {
+  margin: 0;
+  padding: 0;
+  color: var(--font-color);
+}
+
+.districtr-logo {
+  height: 40px;
+  margin: 0;
+  padding: 0;
+}
+
+.districtr-logo svg {
+  height: 100%;
+  width: auto;
+}
+
+.districtr-menu-overlay {
+  z-index: 9999;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 999;
+  background-color: var(--brand-cream);
+  transform: translateX(-100%);
+  transition: transform 0.3s ease-in-out;
+}
+
+.districtr-menu-overlay--active {
+  transform: translateX(0);
+}
+
+.districtr-menu-overlay > .districtr-menu-overlay-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 300px;
+  background-color: var(--brand-cream);
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  border-radius: 3px;
+}
+
+.districtr-menu-overlay-content-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 12px;
+}
+
+.districtr-menu-overlay-content-body-list {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}

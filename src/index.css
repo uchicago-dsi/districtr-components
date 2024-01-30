@@ -1,0 +1,36 @@
+:root {
+  /* Add your CSS variables here */
+  --background: #fff;
+  --background-rgb: rgb(255, 255, 255);
+  --font-color: #494949;
+  --foreground: #494949;
+  --foreground-rgb: rgb(73, 73, 73);
+
+  --foreground-border: rgba(73, 73, 73, 0.15);
+
+  --heading-font-size: 40px;
+
+  --brand-primary: #596b58;
+  --brand-primary-rgb: rgb(89, 107, 88);
+  --brand-primary-rgb-hover: rgb(89, 107, 88);
+  --brand-primary-rgb-active: rgb(89, 107, 88);
+  --brand-primary-rgb-pressed: rgb(89, 107, 88);
+  --brand-primary-rgb-disabled: rgb(89, 107, 88);
+
+  --brand-secondary: #829d85;
+
+  --brand-cream: #f7f5ed;
+
+  font-family: 'Avenir Next', Helvetica, Arial, sans-serif;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #3c3c3c;
+    --background-rgb: rgb(60, 60, 60);
+    --font-color: #fafafa;
+    --foreground: #fafafa;
+    --foreground-rgb: rgb(250, 250, 250);
+    --foreground-border: rgba(250, 250, 250, 0.15);
+  }
+}

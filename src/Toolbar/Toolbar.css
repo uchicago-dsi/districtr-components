@@ -1,0 +1,58 @@
+.d-toolbar {
+  position: absolute;
+  width: 48px;
+  top: 50px;
+  bottom: 0;
+  z-index: 9000;
+  background-color: rgb(236, 233, 225);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 12px;
+}
+
+.d-toolbar.d-toolbar--right {
+  right: 0;
+  border-left: 1px solid #e6e6e6;
+  box-shadow: rgba(0, 0, 0, 0.1) -1px 1px 1px;
+}
+
+.d-toolbar.d-toolbar--left {
+  left: 0;
+  border-right: 1px solid #e6e6e6;
+  box-shadow: rgba(0, 0, 0, 0.1) 1px 1px 1px;
+}
+
+.d-toolbar-group {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  margin: 0;
+}
+
+.d-toolbar-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: auto;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  margin: 0;
+  padding: 0 0 8px 0;
+}
+
+.d-toolbar-panel {
+  position: absolute;
+  width: 300px;
+  height: 100%;
+  top: calc(50vh - 200px);
+  left: 47px;
+  z-index: 9999;
+  transition: transform 0.2s ease;
+  overflow: hidden;
+}

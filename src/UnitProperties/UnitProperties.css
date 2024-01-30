@@ -1,0 +1,91 @@
+.d-unit-properties {
+  position: absolute;
+  top: 50px;
+  right: 48px;
+  width: 300px;
+  background: #fff;
+  padding: 12px;
+  display: flex;
+  z-index: 1000;
+  overflow: hidden;
+  border-left: 1px solid #e6e6e6;
+  border-bottom: 1px solid #e6e6e6;
+  max-height: 100%;
+  overflow: hidden;
+  box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.d-unit-danger {
+  color: #a00000;
+  background: #fac7c7;
+}
+
+.d-unit-warning {
+  color: #8a5c00;
+  background: #fff3c2;
+}
+
+.d-unit-success {
+  background: #ffffff;
+}
+
+.d-unit-wrapper {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  overflow: auto;
+}
+
+.d-unit-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: top;
+  margin-bottom: 12px;
+}
+
+.d-unit-color {
+  width: 48px;
+  height: 48px;
+  border-radius: 3px;
+  border: 2px solid #333333;
+  margin-right: 12px;
+}
+
+.d-ghost-input {
+  border: 1px solid #e6e6e6;
+  border-radius: 3px;
+  padding: 4px 8px;
+  font-size: 14px;
+  width: 100%;
+  margin-bottom: 12px;
+}
+
+.d-ghost-input:focus {
+  outline: none;
+  border-color: #333333;
+}
+
+.d-unit-controls {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.d-chart {
+  margin-top: 8px;
+  height: 48px;
+  width: 100%;
+  padding: 3px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.d-subgroup-charts {
+  margin-top: 12px;
+  width: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+}

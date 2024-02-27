@@ -138,40 +138,6 @@ const Districtr: React.FC<DistrictrProps> = ({
   const mousePosition = useRef<{ x: number; y: number }>(null)
   const lastSaved = useRef<string>(null)
 
-
-  // set map
-  // useEffect(() => {
-  //   console.log("set map useEffect should only be called once")
-  //   mapboxgl.accessToken = mapboxAccessToken
-  //   const newMap = new mapboxgl.Map({
-  //     container: 'districtr-mapbox',
-  //     style: districtr.mapboxStyle,
-  //     center: districtr.center,
-  //     zoom: districtr.zoom,
-  //     attributionControl: false,
-  //     pitchWithRotate: false,
-  //     dragRotate: false,
-  //     preserveDrawingBuffer: true,
-  //     cooperativeGestures: false,
-  //     dragPan: true,
-  //     boxZoom: false,
-  //     touchZoomRotate: true,
-  //     transformRequest: (url, resourceType) => {
-  //       if (resourceType === 'Source' && url.startsWith('http://api.districtr.org')) {
-  //         return {
-  //           url: url,
-  //           headers: {
-  //             Authorization: 'Token *FUTURE TOKEN*',
-  //             'Access-Control-Allow-Origin': '*'
-  //           }
-  //         }
-  //       }
-  //     }
-  //   })
-  //   console.log("Setting Map to ", newMap);
-  //   setMap(newMap)
-  // }, [])
-
   useEffect(() => {
     const keydownCallBack = (e) => {
       if (e.key === 'q') {
@@ -193,33 +159,6 @@ const Districtr: React.FC<DistrictrProps> = ({
     districtrDispatch({ type: 'set_mapbox_map', payload: { mapboxAccessToken, keydownCallBack} })
     districtrDispatch({ type: 'update_active_tool', payload: { activeTool: districtr.activeTool } })
   }, [])
-
-  // useEffect(() => {
-  //   if (!districtr.mapboxMap) {
-  //     return
-  //   }
-  //   console.log('i fire once', "main useEffect hook");
-
-
-  //   // add a keypress listener to the map
-  //   districtr.mapboxMap.getCanvas().addEventListener('keydown', (e) => {
-  //     if (e.key === 'q') {
-  //       districtrDispatch({ type: 'update_active_tool', payload: { activeTool: 'pan' } })
-  //     }
-  //     if (e.key === 'w') {
-  //       districtrDispatch({ type: 'update_active_tool', payload: { activeTool: 'brush' } })
-  //     }
-  //     if (e.key === 'e') {
-  //       districtrDispatch({ type: 'update_active_tool', payload: { activeTool: 'eraser' } })
-  //     }
-  //     if (e.key === 'a') {
-  //       districtrDispatch({ type: 'set_active_unit', payload: 'previous' })
-  //     }
-  //     if (e.key === 'd') {
-  //       districtrDispatch({ type: 'set_active_unit', payload: 'next' })
-  //     }
-  //   })
-  // }, [districtr.mapboxMap])
 
   useEffect(() => {
     if (!saveLoaded && mapState) {

@@ -32,10 +32,6 @@ export const intializeDistrictrState = (state: DistrictrState) => {
     }
   })
 
-  console.log('state', state)
-  console.log('state', populationSum)
-  console.log('state', columnKeys)
-
   return {
     ...state,
     populationSum,
@@ -44,13 +40,8 @@ export const intializeDistrictrState = (state: DistrictrState) => {
 }
 
 export const districtrReducer = (state: DistrictrState, action: DistrictrAction): DistrictrState => {
-  // console.log('action type', action.type)
-  if (state.units[1].population != undefined) {
-    console.log('Still okay, ', action, state)
-  }
   switch (action.type) {
     case 'load_map_state': {
-      console.log('load_map_state called')
       const { mapState } = action.payload
 
       const currentMap = state.mapboxMap
@@ -72,7 +63,6 @@ export const districtrReducer = (state: DistrictrState, action: DistrictrAction)
       }
     }
     case 'set_mapbox_map': {
-      console.log('set_mapbox_map called')
       const events = state.events
 
       mapboxgl.accessToken = action.payload.mapboxAccessToken
@@ -107,7 +97,6 @@ export const districtrReducer = (state: DistrictrState, action: DistrictrAction)
       map.on('load', () => {
         // Add custome map sources not in style
         if (state.sources.length > 0) {
-          console.log('State sources', state.sources)
           state.sources.forEach((source) => {
             map.addSource(source.id, source.config)
             // if (!map.getSource(source.id)) {
@@ -179,7 +168,6 @@ export const districtrReducer = (state: DistrictrState, action: DistrictrAction)
       })
 
       map.getCanvas().addEventListener('keydown', action.payload.keydownCallBack)
-      console.log('map variable', map)
       return {
         ...state,
         mapboxMap: map
@@ -220,14 +208,10 @@ export const districtrReducer = (state: DistrictrState, action: DistrictrAction)
       const newUnits = state.units
 
       if (!newUnits[action.payload.unit]) {
-        console.log('newUnits does not contain the specified unit', state.units)
-        console.log(action.payload)
         return state
       }
 
       if (newUnits[action.payload.unit].color === action.payload.color) {
-        console.log('newUnits current unit has color in the action.payload.color', state.units)
-        console.log(action.payload)
         return state
       }
 
@@ -387,7 +371,6 @@ export const districtrReducer = (state: DistrictrState, action: DistrictrAction)
       }
     }
     case 'user_clicked_map': {
-      console.log(state.mapboxMap.getStyle().layers)
       if (state.activeTool === 'brush' || state.activeTool === 'eraser') {
         const interactiveLayer = state.mapboxMap.getLayer(state.interactiveLayerIds[state.activeInteractiveLayer])
         const features = getHoveredFeatures(action.payload.point, state.brushSize, state.mapboxMap, [

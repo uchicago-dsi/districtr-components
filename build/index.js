@@ -4633,20 +4633,12 @@ const intializeDistrictrState = (state) => {
             });
         }
     });
-    console.log('state', state);
-    console.log('state', populationSum);
-    console.log('state', columnKeys);
     return Object.assign(Object.assign({}, state), { populationSum,
         columnKeys });
 };
 const districtrReducer = (state, action) => {
-    // console.log('action type', action.type)
-    if (state.units[1].population != undefined) {
-        console.log('Still okay, ', action, state);
-    }
     switch (action.type) {
         case 'load_map_state': {
-            console.log('load_map_state called');
             const { mapState } = action.payload;
             const currentMap = state.mapboxMap;
             const currentAccessToken = state.mapboxAccessToken;
@@ -4659,7 +4651,6 @@ const districtrReducer = (state, action) => {
             return Object.assign(Object.assign(Object.assign({}, state), mapState), { mapboxMap: currentMap, mapboxAccessToken: currentAccessToken });
         }
         case 'set_mapbox_map': {
-            console.log('set_mapbox_map called');
             const events = state.events;
             mapboxgl__default["default"].accessToken = action.payload.mapboxAccessToken;
             const map = new mapboxgl__default["default"].Map({
@@ -4691,7 +4682,6 @@ const districtrReducer = (state, action) => {
             map.on('load', () => {
                 // Add custome map sources not in style
                 if (state.sources.length > 0) {
-                    console.log('State sources', state.sources);
                     state.sources.forEach((source) => {
                         map.addSource(source.id, source.config);
                         // if (!map.getSource(source.id)) {
@@ -4752,7 +4742,6 @@ const districtrReducer = (state, action) => {
                 }
             });
             map.getCanvas().addEventListener('keydown', action.payload.keydownCallBack);
-            console.log('map variable', map);
             return Object.assign(Object.assign({}, state), { mapboxMap: map });
         }
         case 'remove_mapbox_map': {
@@ -4776,13 +4765,9 @@ const districtrReducer = (state, action) => {
         case 'update_unit_color': {
             const newUnits = state.units;
             if (!newUnits[action.payload.unit]) {
-                console.log('newUnits does not contain the specified unit', state.units);
-                console.log(action.payload);
                 return state;
             }
             if (newUnits[action.payload.unit].color === action.payload.color) {
-                console.log('newUnits current unit has color in the action.payload.color', state.units);
-                console.log(action.payload);
                 return state;
             }
             newUnits[action.payload.unit].color = action.payload.color;
@@ -4871,7 +4856,6 @@ const districtrReducer = (state, action) => {
             return Object.assign(Object.assign({}, state), { cursorVisible: action.payload });
         }
         case 'user_clicked_map': {
-            console.log(state.mapboxMap.getStyle().layers);
             if (state.activeTool === 'brush' || state.activeTool === 'eraser') {
                 const interactiveLayer = state.mapboxMap.getLayer(state.interactiveLayerIds[state.activeInteractiveLayer]);
                 const features = getHoveredFeatures(action.payload.point, state.brushSize, state.mapboxMap, [
@@ -5219,38 +5203,6 @@ const Districtr = ({ mapboxContainerId = 'districtr-mapbox', title = 'Districtr 
     const prevPoint = React.useRef(null);
     const mousePosition = React.useRef(null);
     const lastSaved = React.useRef(null);
-    // set map
-    // useEffect(() => {
-    //   console.log("set map useEffect should only be called once")
-    //   mapboxgl.accessToken = mapboxAccessToken
-    //   const newMap = new mapboxgl.Map({
-    //     container: 'districtr-mapbox',
-    //     style: districtr.mapboxStyle,
-    //     center: districtr.center,
-    //     zoom: districtr.zoom,
-    //     attributionControl: false,
-    //     pitchWithRotate: false,
-    //     dragRotate: false,
-    //     preserveDrawingBuffer: true,
-    //     cooperativeGestures: false,
-    //     dragPan: true,
-    //     boxZoom: false,
-    //     touchZoomRotate: true,
-    //     transformRequest: (url, resourceType) => {
-    //       if (resourceType === 'Source' && url.startsWith('http://api.districtr.org')) {
-    //         return {
-    //           url: url,
-    //           headers: {
-    //             Authorization: 'Token *FUTURE TOKEN*',
-    //             'Access-Control-Allow-Origin': '*'
-    //           }
-    //         }
-    //       }
-    //     }
-    //   })
-    //   console.log("Setting Map to ", newMap);
-    //   setMap(newMap)
-    // }, [])
     React.useEffect(() => {
         const keydownCallBack = (e) => {
             if (e.key === 'q') {
@@ -5272,30 +5224,6 @@ const Districtr = ({ mapboxContainerId = 'districtr-mapbox', title = 'Districtr 
         districtrDispatch({ type: 'set_mapbox_map', payload: { mapboxAccessToken, keydownCallBack } });
         districtrDispatch({ type: 'update_active_tool', payload: { activeTool: districtr.activeTool } });
     }, []);
-    // useEffect(() => {
-    //   if (!districtr.mapboxMap) {
-    //     return
-    //   }
-    //   console.log('i fire once', "main useEffect hook");
-    //   // add a keypress listener to the map
-    //   districtr.mapboxMap.getCanvas().addEventListener('keydown', (e) => {
-    //     if (e.key === 'q') {
-    //       districtrDispatch({ type: 'update_active_tool', payload: { activeTool: 'pan' } })
-    //     }
-    //     if (e.key === 'w') {
-    //       districtrDispatch({ type: 'update_active_tool', payload: { activeTool: 'brush' } })
-    //     }
-    //     if (e.key === 'e') {
-    //       districtrDispatch({ type: 'update_active_tool', payload: { activeTool: 'eraser' } })
-    //     }
-    //     if (e.key === 'a') {
-    //       districtrDispatch({ type: 'set_active_unit', payload: 'previous' })
-    //     }
-    //     if (e.key === 'd') {
-    //       districtrDispatch({ type: 'set_active_unit', payload: 'next' })
-    //     }
-    //   })
-    // }, [districtr.mapboxMap])
     React.useEffect(() => {
         if (!saveLoaded && mapState) {
             setSaveLoaded(true);
